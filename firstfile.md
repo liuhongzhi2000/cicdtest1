@@ -16,7 +16,6 @@ markdown file
 - [ ] Unchecked
 - [x] Checked
 
-#123
-
+new line added at gcp temp VM
 
 Before ~~strikethrough text~~ after
