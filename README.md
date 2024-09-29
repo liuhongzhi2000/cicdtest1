@@ -9,8 +9,11 @@ this repo is for building CICD pipelines for different dev environment, such as
 - PHP
 
 git pull
+
 git add -A
+
 git commit -a -m "update all files"
+
 git push
 
 mkdir instances
