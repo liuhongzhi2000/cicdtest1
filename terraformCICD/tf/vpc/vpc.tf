@@ -30,33 +30,21 @@ output "network_name" {
 
 #############firewall###################
 resource "google_compute_firewall" "tf-firewall" {
-  name    = "lhz-tf-firewall-www"
+  name    = "lhz-tf-firewall-http-ssh-rdp-icmp"
   network = google_compute_network.lhz_custom_network.self_link
   allow {
     protocol = "tcp"
-    ports    = ["80"]
+    ports    = ["80","22","3389"]
   }
+  #allow {
+  #  protocol = "icmp"
+  #}
 
   # Allow traffic from all sources
   source_ranges = ["0.0.0.0/0"]
 
-  description = "Allow  access on port 80"
+  description = "Allow  http-ssh-rdp-icmp"
 }
 
-
-resource "google_compute_firewall" "allow_ssh" {
-  name    = "lhz-tf-firewall-allow-ssh2"
-  network = google_compute_network.lhz_custom_network.self_link
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
-
-  # Allow traffic from all sources
-  source_ranges = ["0.0.0.0/0"]
-
-  description = "Allow SSH access on port 22"
-}
 
 

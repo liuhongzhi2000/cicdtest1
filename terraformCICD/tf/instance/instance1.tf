@@ -5,8 +5,8 @@ resource "google_compute_instance" "tf_instances" {
   for_each = toset([ "jenkin","target" ])
   
   name         = "lhz-tf-cicd-${each.value}"
-  machine_type = "e2-micro"  
-  zone         = var.zone
+  machine_type = var.instance_type
+  zone         = var.instance_zone
 
   boot_disk {
     initialize_params {
@@ -16,8 +16,12 @@ resource "google_compute_instance" "tf_instances" {
 
   network_interface {
     
-    network = module.vpc.network_self_link
-    subnetwork = module.vpc.subnet_self_link
+    /*network = module.vpc.network_self_link
+    subnetwork = module.vpc.subnet_self_link*/
+
+    
+    network = var.instance_network
+    subnetwork = var.instance_subnetwork
 
     
     access_config {
